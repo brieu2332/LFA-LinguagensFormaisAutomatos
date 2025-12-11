@@ -1,0 +1,24 @@
+## oque o projeto pode abordar:
+
+    - Trasnformar (AFD) para (AFN) : not check ()
+    - gabriel 
+    - g@briel : not check 
+    - tmj# : check
+    - ç : check
+    - gonçalves
+    - usar algoritimo para fazer reduções de automatos
+    (redutor de AFD, reduzindo seus estados)
+
+    123
+    1aaaaaaaa23
+    1a23
+
+    - Operações com Linguagens Regulares (União, Concatenação, estrela) : check ~
+
+*entra: o automato;
+*saida: uma tabela de transições de estados;
+
+classes de caracte
+gruping and backreferences
+motor de expressão Regulare
+motor de 

@@ -1,0 +1,15 @@
+grep
+joga uma expressão e valida dentro de um contexto quase uma procura dentro dessa expressão
+e retorna os valido dentro disos
+
+algoritimo de thompson 
+analisador léxico 
+alguns do fundamentos da computaçao
+
+grep pesquisa por expressões Regulares
+
+expressões algebricas 
+
+pila de automatos
+
+procurar por que'
