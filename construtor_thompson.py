@@ -1,12 +1,11 @@
-
 from automato import AFN
 from gerador_estados import GeradorDeEstados
 from operacoes.uniao import uniao_afns
 from operacoes.concatenacao import concatenacao_afns
 from operacoes.estrela import estrela_afn
+from pre_processador import expandir_classes
 
 def _adicionar_concatenacao_explicita(regex):
-
     saida = ''
     for i in range(len(regex)):
         saida += regex[i]
@@ -33,7 +32,7 @@ def _infixa_para_posfixa(regex_com_concat):
             while pilha_operadores and pilha_operadores[-1] != '(':
                 posfixa.append(pilha_operadores.pop())
             pilha_operadores.pop() 
-        else: 
+        elif char in precedencia: 
             while (pilha_operadores and pilha_operadores[-1] != '(' and
                    precedencia.get(pilha_operadores[-1], 0) >= precedencia.get(char, 0)):
                 posfixa.append(pilha_operadores.pop())
@@ -45,7 +44,10 @@ def _infixa_para_posfixa(regex_com_concat):
     return "".join(posfixa)
 
 def regex_para_afn(regex):
-    regex_com_concat = _adicionar_concatenacao_explicita(regex)
+    regex_expandida = expandir_classes(regex)
+
+    regex_com_concat = _adicionar_concatenacao_explicita(regex_expandida)
+
     posfixa = _infixa_para_posfixa(regex_com_concat)
 
     if not posfixa:
@@ -89,4 +91,3 @@ def regex_para_afn(regex):
         raise ValueError(f"Pilha final mal formada. Sobraram {len(pilha_afns)} itens.")
         
     return pilha_afns.pop()
-

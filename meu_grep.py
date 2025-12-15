@@ -30,26 +30,41 @@ def mostrar_conteudo_arquivo(nome_arquivo):
         print(f"ERRO ao ler o arquivo: {e}")
         print("------------------------------------------")
 
+def executar_grep():
+    """
+    Função principal que encapsula a lógica de interação com o usuário.
+    """
+    print("\n" + "="*50)
+    print("       MEU GREP - Buscador com Autômatos")
+    print("="*50)
 
-if __name__ == "__main__":
-    
     padrão_usuario = input("Digite o padrão (Expressão Regular) a ser procurado: ")
     arquivo_alvo = input("Digite o nome do arquivo de texto para vasculhar: ")
 
-    automato_de_busca = criar_automato_grep(padrão_usuario)
 
-    print(f"\n--- Procurando por '{padrão_usuario}' em '{arquivo_alvo}' ---")
-    
     try:
+        automato_de_busca = criar_automato_grep(padrão_usuario)
+
+        print(f"\n--- Procurando por '{padrão_usuario}' em '{arquivo_alvo}' ---")
+        
         with open(arquivo_alvo, 'r', encoding='utf-8') as f:
             ocorrencias_encontradas = 0
             for num_linha, linha in enumerate(f, 1):
-                if automato_de_busca.simular(linha.strip()):
-                    print(f"Linha {num_linha}: {linha.strip()}")
+                linha_limpa = linha.strip() 
+                
+                if automato_de_busca.simular(linha_limpa):
+                    print(f"Linha {num_linha}: {linha_limpa}")
                     ocorrencias_encontradas += 1
             
             if ocorrencias_encontradas == 0:
                 print("\nNenhuma ocorrência do padrão foi encontrada.")
     
     except FileNotFoundError:
-        print(f"ERRO: O arquivo '{arquivo_alvo}' não foi encontrado.")
+        print(f"\n[ERRO]: O arquivo '{arquivo_alvo}' não foi encontrado.")
+    except Exception as e:
+        print(f"\n[ERRO]: Ocorreu um problema inesperado: {e}")
+    
+    print("-" * 50)
+
+if __name__ == "__main__":
+    executar_grep()

@@ -22,3 +22,12 @@ classes de caracte
 gruping and backreferences
 motor de expressão Regulare
 motor de 
+
+Linha 1: 12345
+Linha 2: abcdef
+Linha 3: ABCDEF
+Linha 4: a1b2c3
+Linha 5: !@#$%
+Linha 6: email@teste.com
+Linha 7: apenas texto minusculo
+Linha 8: APENAS TEXTO MAIUSCULO

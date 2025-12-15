@@ -1,34 +1,38 @@
-# main.py
+import sys
+import time
+from meu_grep import executar_grep
 
-from construtor_thompson import regex_para_afn
-from conversor_afn_afd import afn_para_afd 
+def limpar_tela():
+    print("\n" * 5)
+
+def menu_principal():
+    while True:
+        limpar_tela()
+        print("========================================")
+        print("   SISTEMA DE AUTÔMATOS (Projeto LFA)")
+        print("========================================")
+        print("1. Iniciar Busca (Meu Grep)")
+        print("0. Sair")
+        print("========================================")
+        
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == '1':
+            executar_grep()
+            input("\nPressione ENTER para voltar ao menu...")
+            
+        elif opcao == '0':
+            print("\nEncerrando o sistema...")
+            time.sleep(1)
+            print("Até logo!")
+            sys.exit()
+            
+        else:
+            print("\nOpção inválida! Tente novamente.")
+            time.sleep(1)
 
 if __name__ == "__main__":
-    
-    print("--- Conversor de Expressão Regular para Autômato ---")
-    
     try:
-        # Pede a entrada do usuário
-        expressao = input("Digite uma Expressão Regular (ex: (a|b)*a): ")
-        
-        # --- FASE 1: ER -> AFN ---
-        print("\n1. Convertendo Expressão Regular para AFN (Construção de Thompson)...")
-        afn_gerado = regex_para_afn(expressao)
-        
-        print("\n--- AFN Resultante ---")
-        print(afn_gerado)
-        
-        # --- FASE 2: AFN -> AFD ---
-        print("\n\n2. Convertendo AFN para AFD (Construção de Subconjuntos)...")
-        afd_final = afn_para_afd(afn_gerado)
-        
-        print("\n--- AFD Final Gerado ---")
-        print(afd_final)
-        
-        print("\n\n--- O pipeline completo foi executado com sucesso! ---")
-        # A partir daqui, você poderia usar o 'afd_final' no seu simulador.
-        
-    except (ValueError, IndexError) as e:
-        print(f"\nERRO: A expressão regular parece ser inválida. ({e})")
+        menu_principal()
     except KeyboardInterrupt:
-        print("\nOperação cancelada pelo usuário.")
+        print("\n\nExecução interrompida forçadamente.")
